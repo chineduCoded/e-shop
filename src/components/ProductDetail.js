@@ -4,8 +4,11 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import ReactLoading from "react-loading";
 import { FaHeart, FaShoppingCart } from 'react-icons/fa'
+import formatCurrency from 'format-currency'
 
 const ProductDetail = () => {
+    const opts = { format: '%s%v', symbol: '$' }
+
     const [product, setProduct] = useState([])
     const [done, setDone] = useState(undefined)
 
@@ -41,7 +44,7 @@ const ProductDetail = () => {
                 <ContentHolder>
                     <Category>{product?.category}</Category>
                     <Title>{product?.title}</Title>
-                    <Price>${product?.price}</Price>
+                    <Price>{formatCurrency(`${product?.price}`, opts)}</Price>
                     <ButtonHolder>
                         <Button btn><span><FaHeart /></span> 
                         Wishlist</Button>
